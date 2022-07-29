@@ -1,4 +1,5 @@
 async function main() {
+  console.log(hre.network.config.chainId);
   const chatLogFactory = await hre.ethers.getContractFactory("ChatLog");
   const chatContract = await chatLogFactory.deploy();
 
