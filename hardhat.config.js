@@ -23,6 +23,6 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: "",
+    apiKey: process.env.ETHERSCAN,
   },
 };
