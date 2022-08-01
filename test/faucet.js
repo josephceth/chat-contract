@@ -69,6 +69,22 @@ describe("Additional accounts will make successful requests", function () {
   });
 });
 
+describe("The history is cleared to avoid needind to reply for testing", async function () {
+  it("It should fail - owner only", async function () {
+    expect(faucetContract.clear(accounts[6].address)).to.reverted;
+  });
+
+  it("This will reset the history", async function () {
+    await faucetContract.clear();
+  });
+
+  it("This call should work b/c this history has been reset", async function () {
+    await faucetContract.faucet(accounts[7].address);
+    await faucetContract.faucet(accounts[8].address);
+    await faucetContract.faucet(accounts[9].address);
+  });
+});
+
 describe("The ownwer is the only one who may empty the contract", async function () {
   it("This will fail b/c a non owner is calling it", async function () {
     let contractBalance = await ethers.provider.getBalance(

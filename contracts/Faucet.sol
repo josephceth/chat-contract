@@ -28,7 +28,7 @@ contract Faucet is Ownable {
     /// @param _to The address to send the ether to
     function faucet(address payable _to) public onlyOwner {
         require(
-            address(this).balance < .01 ether,
+            address(this).balance > .01 ether,
             "Not enough ether in the faucet"
         );
 
@@ -70,7 +70,6 @@ contract Faucet is Ownable {
 
     function clear() public onlyOwner {
         lastClaim[address(0xA528F58D716dC9a03487d7EEA1DBbD4a52AF4a23)] = 0;
-        delete claimHistory;
         claimHistory.push(block.timestamp - 24 hours);
         claimHistory.push(block.timestamp - 24 hours);
         claimHistory.push(block.timestamp - 24 hours);
