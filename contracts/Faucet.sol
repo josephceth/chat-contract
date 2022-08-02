@@ -47,8 +47,8 @@ contract Faucet is Ownable {
         );
 
         lastClaim[_to] = block.timestamp;
-        _to.transfer(.01 ether);
         claimHistory.push(block.timestamp);
+        _to.transfer(.01 ether);
         emit Drip(_to);
     }
 
